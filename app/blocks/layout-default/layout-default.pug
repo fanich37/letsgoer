@@ -1,0 +1,10 @@
+include /../node_modules/bemto.pug/bemto
+include ../page/page
+include ../scripts/scripts
+
+doctype html
+html(lang='ru')
+	include ../head/head
+	+page
+		block content
+		+scripts(['app.min.js'])
