@@ -1,25 +1,23 @@
-const gulp = require('gulp');
-const gulpIf = require('gulp-if');
-const plumber = require('gulp-plumber');
-const pug = require('gulp-pug');
-const pugLinter = require('gulp-pug-linter');
-const prettify = require('gulp-jsbeautifier');
-const inheritance = require('gulp-pug-inheritance');
-// const emitty = require('emitty').setup('app', 'pug');
-const cached = require('gulp-cached');
-const filter = require('gulp-filter');
-const rename = require('gulp-rename');
-const errorHandler = require('gulp-plumber-error-handler');
-const staticHash = require('gulp-static-hash');
+import gulp from 'gulp';
+import gulpIf from 'gulp-if';
+import plumber from 'gulp-plumber';
+import jade from 'gulp-jade';
+import pugLinter from 'gulp-pug-linter';
+import prettify from 'gulp-jsbeautifier';
+import inheritance from 'gulp-jade-inheritance';
+import cached from 'gulp-cached';
+import filter from 'gulp-filter';
+import rename from 'gulp-rename';
+import errorHandler from 'gulp-plumber-error-handler';
+import staticHash from 'gulp-static-hash';
 
 gulp.task('templates', () => (
-	gulp.src('app/**/*.pug')
+	gulp.src('app/**/*.jade')
 		.pipe(plumber({errorHandler: errorHandler(`Error in \'templates\' task`)}))
-		// .pipe(cached('pug-template'))
-		.pipe(gulpIf(global.watch, inheritance({basedir: 'app', skip: 'node_modules'})))
-		// .pipe(gulpIf(global.watch, emitty.stream()))
+		.pipe(cached('jade'))
+		.pipe(gulpIf(global.watch, inheritance({basedir: 'app'})))
 		.pipe(filter(file => /app[\\\/]pages/.test(file.path)))
-		.pipe(pug({basedir: 'app'}))
+		.pipe(jade({basedir: 'app'}))
 		.pipe(gulpIf(process.env.PRETTIFY !== false, prettify({
 			braceStyle: 'expand',
 			indentWithTabs: true,
@@ -41,7 +39,7 @@ gulp.task('templates', () => (
 
 gulp.task('templates:lint', () =>
 	gulp
-		.src('app/**/*.pug')
+		.src('app/**/*.jade')
 		.pipe(pugLinter())
 		.pipe(pugLinter.reporter('fail'))
 );

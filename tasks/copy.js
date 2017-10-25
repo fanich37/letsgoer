@@ -1,7 +1,7 @@
-const gulp = require('gulp');
-const changed = require('gulp-changed');
-const filter = require('gulp-filter');
-const gulpIf = require('gulp-if');
+import gulp from 'gulp';
+import changed from 'gulp-changed';
+import filter from 'gulp-filter';
+import gulpIf from 'gulp-if';
 
 const { INCLUDE_ROBOTS } = process.env;
 

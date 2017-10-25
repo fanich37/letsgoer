@@ -1,4 +1,4 @@
-include /../node_modules/bemto.pug/bemto
+include /../node_modules/bemto.jade/bemto
 include ../page/page
 include ../scripts/scripts
 
@@ -7,4 +7,5 @@ html(lang='ru')
 	include ../head/head
 	+page
 		block content
+		script(type='text/javascript' src='/assets/scripts/jquery.min.js')
 		+scripts(['app.min.js'])

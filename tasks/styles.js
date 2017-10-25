@@ -1,29 +1,38 @@
-const gulp = require('gulp');
-const plumber = require('gulp-plumber');
-const gulpIf = require('gulp-if');
-const stylint = require('gulp-stylint');
-const stylus = require('gulp-stylus');
-// const importIfExist = require('stylus-import-if-exist');
-const autoprefixer = require('autoprefixer-stylus');
-const gcmq = require('gulp-group-css-media-queries');
-const nano = require('gulp-cssnano');
-const rename = require('gulp-rename');
-const errorHandler = require('gulp-plumber-error-handler');
+import gulp from 'gulp';
+import plumber from 'gulp-plumber';
+import gulpIf from 'gulp-if';
+import stylint from 'gulp-stylint';
+import stylus from 'gulp-stylus';
+import postcss from 'gulp-postcss';
+import flexfixes from 'postcss-flexbugs-fixes';
+import autoprefixer from 'gulp-autoprefixer';
+import gcmq from 'gulp-group-css-media-queries';
+import nano from 'gulp-cssnano';
+import rename from 'gulp-rename';
+import errorHandler from 'gulp-plumber-error-handler';
+
+import { browsers } from '../package.json';
 
 const isDebug = process.env.NODE_ENV !== 'production';
 
 gulp.task('styles', () => (
 	gulp.src('app/styles/*.styl')
 		.pipe(plumber({errorHandler: errorHandler(`Error in \'styles\' task`)}))
-		.pipe(stylus({
-			use: [
-				// importIfExist(),
-				autoprefixer()
-			],
-			'include css': true
-		}))
+		.pipe(stylus({'include css': true}))
+		.pipe(autoprefixer(
+			'Android >= ' + browsers.android,
+			'Chrome >= ' + browsers.chrome,
+			'Firefox >= ' + browsers.firefox,
+			'Explorer >= ' + browsers.ie,
+			'iOS >= ' + browsers.ios,
+			'Opera >= ' + browsers.opera,
+			'Safari >= ' + browsers.safari
+		))
+		.pipe(postcss([
+			flexfixes()
+		]))
 		.pipe(gulpIf(!isDebug, gcmq()))
-		.pipe(gulpIf(!isDebug, nano({zindex: false})))
+		.pipe(gulpIf(!isDebug, nano({zindex: false, autoprefixer:false})))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('dist/assets/styles'))
 ));

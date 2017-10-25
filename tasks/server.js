@@ -1,14 +1,15 @@
-const gulp = require('gulp');
-const bs = require('browser-sync').create();
-const debuga = require('debuga');
+import gulp from 'gulp';
+import debuga from 'debuga';
+import bSync from 'browser-sync';
 
+const bs = bSync.create();
 const { PORT, OPEN, NODE_ENV, TUNNEL } = process.env;
 
 gulp.task('server', () => (
 	bs.init({
-		// watchOptions: {
-		// 	ignored: 'app/**/*'
-		// },
+		watchOptions: {
+			ignored: 'app/**/*'
+		},
 		files: ['dist/**/*'],
 		open: !!OPEN,
 		reloadOnRestart: true,
