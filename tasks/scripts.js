@@ -6,14 +6,14 @@ import buffer from 'vinyl-buffer';
 import gulpIf from 'gulp-if';
 import plumber from 'gulp-plumber';
 import eslint from 'gulp-eslint';
-import babel from 'gulp-babel';
+import babel from 'babelify';
 import browserify from 'browserify';
 import errorHandler from 'gulp-plumber-error-handler';
 
 const isDebug = process.env.NODE_ENV !== 'production';
 
 gulp.task('scripts', () => {
-	let bundler = browserify('app/scripts/app.js', {debug: true});
+	let bundler = browserify('app/scripts/app.js', {debug: true}).transform(babel);
 	return bundler
 		.bundle()
 		.on('error', function(err) {console.error(err); this.emit('end');})
@@ -29,18 +29,6 @@ gulp.task('scripts:lint', () => {
 		.pipe(eslint())
 		.pipe(eslint.format());
 });
-
-// gulp.task('scripts', () => {
-// 	gulp.src('app/scripts/app.js')
-// 		.pipe(plumber({errorHandler: errorHandler(`Error in \'scripts\' task`)}))
-// 		.pipe(eslint())
-// 		.pipe(eslint.format())
-// 		.pipe(babel())
-// 		// .pipe(gulpif(!isDebug, concat('scripts.js')))
-// 		.pipe(gulpIf(!isDebug, uglify()))
-// 		.pipe(rename({suffix: '.min'}))
-// 		.pipe(gulp.dest('dist/assets/scripts'))
-// });
 
 gulp.task('scripts:jquery', () => {
 	gulp.src('app/scripts/jquery.min.js')

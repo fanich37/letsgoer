@@ -1,0 +1,7 @@
+mixin menu(items)
+	+b('nav').menu&attributes(attributes)
+		+e('ul').list
+			each item in items
+				+e('li').item
+					+e('a').link(href='/')= item
+		block

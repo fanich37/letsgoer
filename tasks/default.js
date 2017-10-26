@@ -4,6 +4,7 @@ import gulp from 'gulp';
 gulp.task('default', () => (
 	runSequence(
 		[
+			'icons',
 			'styles',
 			'templates',
 			'scripts:jquery',
@@ -17,6 +18,7 @@ gulp.task('default', () => (
 
 gulp.task('build', () => (
 	runSequence(
+		'icons',
 		'styles',
 		'scripts:jquery',
 		'scripts',
