@@ -6,6 +6,8 @@ doctype html
 html(lang='ru')
 	include ../head/head
 	+page
+		include ../header/header
 		block content
+		include ../footer/footer
 		script(type='text/javascript' src='/assets/scripts/jquery.min.js')
 		+scripts(['app.min.js'])

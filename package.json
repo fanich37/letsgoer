@@ -39,6 +39,7 @@
     "gulp-postcss": "^7.0.0",
     "gulp-pug-linter": "^0.5.1",
     "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.1",
     "gulp-static-hash": "^0.1.4",
     "gulp-stylint": "^4.0.0",
     "gulp-stylus": "^2.6.0",

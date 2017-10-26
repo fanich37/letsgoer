@@ -9,6 +9,7 @@ import autoprefixer from 'gulp-autoprefixer';
 import gcmq from 'gulp-group-css-media-queries';
 import nano from 'gulp-cssnano';
 import rename from 'gulp-rename';
+import sourcemaps from 'gulp-sourcemaps';
 import errorHandler from 'gulp-plumber-error-handler';
 
 import { browsers } from '../package.json';
@@ -18,6 +19,7 @@ const isDebug = process.env.NODE_ENV !== 'production';
 gulp.task('styles', () => (
 	gulp.src('app/styles/*.styl')
 		.pipe(plumber({errorHandler: errorHandler(`Error in \'styles\' task`)}))
+		.pipe(gulpIf(isDebug, sourcemaps.init()))
 		.pipe(stylus({'include css': true}))
 		.pipe(autoprefixer(
 			'Android >= ' + browsers.android,
@@ -34,6 +36,7 @@ gulp.task('styles', () => (
 		.pipe(gulpIf(!isDebug, gcmq()))
 		.pipe(gulpIf(!isDebug, nano({zindex: false, autoprefixer:false})))
 		.pipe(rename({suffix: '.min'}))
+		.pipe(gulpIf(isDebug, sourcemaps.write()))
 		.pipe(gulp.dest('dist/assets/styles'))
 ));
 
