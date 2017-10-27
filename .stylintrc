@@ -31,6 +31,8 @@
 	"sortOrder": [ // discuss 7
 		"all", // all: initial should be first
 
+		"content",
+
 		"position",
 		"z-index",
 		"top",
@@ -128,7 +130,6 @@
 		"user-select",
 		"pointer-events",
 
-		"content",
 		"quotes",
 		"counter-reset",
 		"counter-increment",
