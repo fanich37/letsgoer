@@ -5,9 +5,10 @@ gulp.task('default', () => (
 	runSequence(
 		[
 			'icons',
+			'copy',
 			'styles',
 			'templates',
-			'scripts:jquery',
+			'scripts:libraries',
 			'scripts:lint',
 			'scripts'
 		],
@@ -19,10 +20,10 @@ gulp.task('default', () => (
 gulp.task('build', () => (
 	runSequence(
 		'icons',
-		'styles',
-		'scripts:jquery',
-		'scripts',
 		'copy',
+		'styles',
+		'scripts:libraries',
+		'scripts',
 		'templates'
 	)
 ));

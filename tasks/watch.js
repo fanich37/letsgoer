@@ -12,5 +12,6 @@ gulp.task('watch', () => {
 	watch('app/{styles,blocks}/**/*.styl', () => { runSequence(['styles', 'styles:lint'], () => bs.reload('assets/styles/app.min.css')) });
 	watch('app/icons/**/*.svg', () => runSequence('icons', bs.reload));
 	watch('app/{pages,blocks}/**/*.jade', () => runSequence('templates', bs.reload));
-	watch('app/scripts/**/*.js', () => runSequence('scripts:lint', 'scripts', bs.reload));
+	watch(['app/scripts/**/*.js', '!app/scripts/libraries/*.js'], () => runSequence('scripts:lint', 'scripts', bs.reload));
+	watch('app/scripts/libraries/*.js', () => runSequence('scripts:libraries', bs.reload));
 });

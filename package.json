@@ -1,6 +1,6 @@
 {
   "name": "letsgoer",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "The template for the the fast start. Created with the big influence of CSSSR starting template.",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "bemto.jade": "^1.0.3",
     "browser-sync": "^2.18.13",
     "browserify": "^14.5.0",
+    "browserify-shim": "^3.8.14",
     "cross-env": "^5.1.0",
     "debuga": "^1.0.2",
     "eslint": "^4.9.0",
@@ -46,6 +47,7 @@
     "gulp-svg-symbols": "^2.0.2",
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^4.3.11",
+    "mdn-polyfills": "^5.4.0",
     "npm-run-all": "^4.1.1",
     "path": "^0.12.7",
     "postcss-flexbugs-fixes": "^3.2.0",
@@ -53,6 +55,7 @@
     "require-dir": "^0.3.2",
     "rimraf": "^2.6.2",
     "run-sequence": "^2.2.0",
+    "slick-carousel": "^1.8.1",
     "stylint": "^1.5.9",
     "stylint-stylish": "^1.4.0",
     "stylus": "^0.54.5",
@@ -68,5 +71,13 @@
     "ios": 7,
     "opera": 28,
     "safari": 7
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "global:jQuery"
   }
 }

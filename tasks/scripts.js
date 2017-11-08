@@ -24,13 +24,13 @@ gulp.task('scripts', () => {
 });
 
 gulp.task('scripts:lint', () => {
-	gulp.src(['app/scripts/**/*.js', '!app/scripts/jquery.min.js'])
+	gulp.src(['app/scripts/**/*.js', '!app/scripts/libraries/*.js'])
 		.pipe(plumber({errorHandler: errorHandler(`Error in \'scripts\' task`)}))
 		.pipe(eslint())
 		.pipe(eslint.format());
 });
 
-gulp.task('scripts:jquery', () => {
-	gulp.src('app/scripts/jquery.min.js')
+gulp.task('scripts:libraries', () => {
+	gulp.src('app/scripts/libraries/*.js')
 		.pipe(gulp.dest('dist/assets/scripts'));
-})
+});
