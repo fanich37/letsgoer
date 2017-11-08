@@ -17,3 +17,6 @@ The template for the fast start.
 3. create new block: `npm run block new_block_name`;
 4. clear the dist folder: `npm run clean`;
 5. for minifying all .css and .js files: `npm run production`.
+
+## Global jQuery
+jQuery@2.2.4 is included via `<script>` tag by default in this template.
