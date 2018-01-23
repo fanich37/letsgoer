@@ -12,22 +12,30 @@ import errorHandler from 'gulp-plumber-error-handler';
 
 const isDebug = process.env.NODE_ENV !== 'production';
 
+const sourceFolder = 'app/scripts/';
+const postfix = '.js';
+const filesToBundle = ['app', 'details'];
+
 gulp.task('scripts', () => {
-	let bundler = browserify('app/scripts/app.js', {debug: true}).transform(babel);
-	return bundler
-		.bundle()
-		.on('error', function(err) {console.error(err); this.emit('end');})
-		.pipe(source('app.min.js'))
-		.pipe(buffer())
-		.pipe(gulpIf(!isDebug, uglify()))
-		.pipe(gulp.dest('dist/assets/scripts'));
+	filesToBundle.forEach(item => {
+		let bundler = browserify(`${sourceFolder}${item}${postfix}`, {debug: true}).transform(babel);
+		return bundler
+			.bundle()
+			.on('error', function(err) {console.error(err); this.emit('end');})
+			.pipe(source(`${item}.min${postfix}`))
+			.pipe(buffer())
+			.pipe(gulpIf(!isDebug, uglify()))
+			.pipe(gulp.dest('dist/assets/scripts'));
+	});
 });
 
 gulp.task('scripts:lint', () => {
-	gulp.src(['app/scripts/**/*.js', '!app/scripts/libraries/*.js'])
-		.pipe(plumber({errorHandler: errorHandler(`Error in \'scripts\' task`)}))
-		.pipe(eslint())
-		.pipe(eslint.format());
+	filesToBundle.forEach(item => {
+		gulp.src(`${sourceFolder}${item}${postfix}`)
+			.pipe(plumber({errorHandler: errorHandler(`Error in \'scripts\' task`)}))
+			.pipe(eslint())
+			.pipe(eslint.format());
+	});
 });
 
 gulp.task('scripts:libraries', () => {
