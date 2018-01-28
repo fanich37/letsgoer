@@ -7,10 +7,9 @@ gulp.task('default', () => (
 			'icons',
 			'copy',
 			'styles',
-			'templates',
-			'scripts:libraries',
-			'scripts:lint',
-			'scripts'
+			'scripts:libs',
+			'scripts',
+			'templates'
 		],
 		'server',
 		'watch'
@@ -22,7 +21,7 @@ gulp.task('build', () => (
 		'icons',
 		'copy',
 		'styles',
-		'scripts:libraries',
+		'scripts:libs',
 		'scripts',
 		'templates'
 	)
