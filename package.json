@@ -8,8 +8,8 @@
     "build": "gulp build",
     "clean": "rimraf dist",
     "production": "cross-env NODE_ENV=production npm-run-all clean build",
-    "block": "sh create-block.sh",
-    "page": "sh create-page.sh",
+    "block": "node -e \"require('./create-block-or-page').block()\" block",
+    "page": "node -e \"require('./create-block-or-page').page()\" page",
     "source": "gulp source"
   },
   "author": "Andrey Alexandrov <me@fan37.ru> (https://github.com/fanich37)",
