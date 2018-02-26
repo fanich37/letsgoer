@@ -1,22 +1,19 @@
 import webpack from 'webpack';
+import { scriptBundles } from './package.json';
+import { externalLibs } from './package.json';
 
 export default function setWebpackConfig({
 	watch = true,
 	sourcemaps = false,
 	debug = false
-}, filesToServe) {
+}) {
 	return {
 		watch,
-		entry: filesToServe,
+		entry: scriptBundles,
 		output: {
 			filename: '[name].min.js'
 		},
-		/* If using external libs via script tag - indicate it here in this way:
-			moduleName (like in node_modules): 'globalVar'
-		*/
-		externals: {
-			jquery: '$'
-		},
+		externals: externalLibs,
 		devtool: (sourcemaps || !debug) ? '#source-map' : 'eval',
 		resolve: {
 			modules: ['node_modules']
@@ -24,7 +21,7 @@ export default function setWebpackConfig({
 		module: {
 			rules: [
 				{ test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
-				{ test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules|local-modules|external-libs/, options: {
+				{ test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules|local-libs|external-libs/, options: {
 						configFile: './.eslintrc',
 						emitErrors: false,
 						emitWarning: true
@@ -45,7 +42,9 @@ export default function setWebpackConfig({
 				__DEV__: JSON.stringify(process.env.NODE_ENV !== 'production')
 			})
 		].concat(debug ? [] : [
-			new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}, output: {comments: false}})
+			new webpack.optimize.UglifyJsPlugin({
+				compress: {warnings: false}, output: {comments: false}
+			})
 		])
 	}
 }

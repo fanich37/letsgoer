@@ -46,7 +46,7 @@
     "gulp-stylus": "^2.6.0",
     "gulp-svg-symbols": "^2.0.2",
     "gulp-watch": "^4.3.11",
-    "jquery": "^2.2.4",
+    "jquery": "^3.3.1",
     "npm-run-all": "^4.1.1",
     "postcss-flexbugs-fixes": "^3.2.0",
     "pug-lint": "^2.5.0",
@@ -56,6 +56,7 @@
     "stylint": "^1.5.9",
     "stylint-stylish": "^1.4.0",
     "stylus": "^0.54.5",
+    "stylus-import-if-exist": "^1.1.0",
     "svg4everybody": "^2.1.9",
     "webpack": "^3.10.0",
     "webpack-stream": "^4.0.0"
@@ -68,5 +69,11 @@
     "ios": 7,
     "opera": 28,
     "safari": 7
+  },
+  "scriptBundles": {
+    "app": "./app/scripts/app.js"
+  },
+  "externalLibs": {
+    "jquery": "$"
   }
 }

@@ -3,6 +3,7 @@ import plumber from 'gulp-plumber';
 import gulpIf from 'gulp-if';
 import stylint from 'gulp-stylint';
 import stylus from 'gulp-stylus';
+import importIfExist from 'stylus-import-if-exist';
 import postcss from 'gulp-postcss';
 import flexfixes from 'postcss-flexbugs-fixes';
 import autoprefixer from 'gulp-autoprefixer';
@@ -20,7 +21,12 @@ gulp.task('styles', () => (
 	gulp.src('app/styles/*.styl')
 		.pipe(plumber({errorHandler: errorHandler(`Error in \'styles\' task`)}))
 		.pipe(gulpIf(isDebug, sourcemaps.init()))
-		.pipe(stylus({'include css': true}))
+		.pipe(stylus({
+			use: [
+				importIfExist()
+			],
+			'include css': true
+		}))
 		.pipe(autoprefixer(
 			'Android >= ' + browsers.android,
 			'Chrome >= ' + browsers.chrome,
@@ -34,7 +40,7 @@ gulp.task('styles', () => (
 			flexfixes()
 		]))
 		.pipe(gulpIf(!isDebug, gcmq()))
-		.pipe(gulpIf(!isDebug, nano({zindex: false, autoprefixer:false})))
+		.pipe(gulpIf(!isDebug, nano({zindex: false, autoprefixer: false})))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulpIf(isDebug, sourcemaps.write()))
 		.pipe(gulp.dest('dist/assets/styles'))

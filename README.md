@@ -20,4 +20,4 @@ The template for the the fast start.
 6. for minifying all .css and .js files: `npm run production`.
 
 ## Global jQuery
-jQuery@2.2.4 is included via `<script>` tag by default in this template.
+jQuery@3.3.1 is included via `<script>` tag by default in this template.
