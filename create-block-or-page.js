@@ -30,7 +30,7 @@ function createBlockFolder(blockName) {
 
 function createBlockFiles(blockName) {
 	const blockContent = {
-		jade: `include ../mixins/mixins/\n\nmixin ${blockName}()\n\t+b.${blockName}&attributes(attributes)\n\t\tblock\n`,
+		jade: `include ../mixins/mixins\n\nmixin ${blockName}()\n\t+b.${blockName}&attributes(attributes)\n\t\tblock\n`,
 		styl: `.${blockName}\n\tdisplay block`,
 		js: ''
 	};
