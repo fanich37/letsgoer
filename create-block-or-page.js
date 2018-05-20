@@ -5,10 +5,10 @@ const fs = require('fs');
 const isValidName = process.argv.length === 3 ? true : false;
 const methodToCall = process.argv[1];
 const newName = process.argv[2];
-const DIR_PATH = `./app/${methodToCall}s/`;
+const DIR_PATH = `./src/${methodToCall}s/`;
 
 function isNewNameAvailable(fileName) {
-	fileName += methodToCall === 'block' ? '' : '.jade';
+	fileName += methodToCall === 'block' ? '' : '.pug';
 	return new Promise(resolve => {
 		fs.stat(`${DIR_PATH}${fileName}`, available => {
 			if (available) {
@@ -30,7 +30,7 @@ function createBlockFolder(blockName) {
 
 function createBlockFiles(blockName) {
 	const blockContent = {
-		jade: `include ../mixins/mixins\n\nmixin ${blockName}()\n\t+b.${blockName}&attributes(attributes)\n\t\tblock\n`,
+		pug: `include ../mixins/mixins\n\nmixin ${blockName}()\n\t+b.${blockName}&attributes(attributes)\n\t\tblock\n`,
 		styl: `.${blockName}\n\tdisplay block`,
 		js: ''
 	};
@@ -63,7 +63,7 @@ function createPage() {
 		isNewNameAvailable(newName)
 			.then(() => { 
 				const pageContent = `extends /blocks/layout-default/layout-default\n\nblock head\n\t- var pageTitle = 'Page ${newName}';\n\nblock content`;
-				fs.writeFile(`${DIR_PATH}${newName}.jade`, pageContent, 'utf8', error => {
+				fs.writeFile(`${DIR_PATH}${newName}.pug`, pageContent, 'utf8', error => {
 					if (error) { notify(`The page wasn't created. Something went wrong.`); }
 				});
 			})

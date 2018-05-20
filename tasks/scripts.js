@@ -7,7 +7,7 @@ const NODE_ENV = process.env;
 const isDebug = process.env.NODE_ENV !== 'production';
 
 gulp.task('scripts', () => {
-	gulp.src('app/scripts/app.js')
+	gulp.src('src/scripts/bundle.js')
 		.pipe(webpackStream(setWebpackConfig({
 			watch: isDebug,
 			debug: isDebug,
@@ -16,7 +16,7 @@ gulp.task('scripts', () => {
 		.pipe(gulp.dest('dist/assets/scripts'));
 });
 
-gulp.task('scripts:libs', () => {
-	gulp.src('app/scripts/external-libs/*.js')
-		.pipe(gulp.dest('dist/assets/scripts'));
+gulp.task('scripts:vendor', () => {
+	gulp.src('src/scripts/vendor/*.js')
+		.pipe(gulp.dest('dist/assets/scripts/vendor'));
 });

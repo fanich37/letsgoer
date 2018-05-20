@@ -31,7 +31,7 @@ export default function setWebpackConfig({
 		},
 		plugins: [
 			new webpack.optimize.CommonsChunkPlugin({
-				name: 'app'
+				name: 'bundle'
 			}),
 			new webpack.DefinePlugin({
 				'process.env': {

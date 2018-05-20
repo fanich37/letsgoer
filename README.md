@@ -3,7 +3,7 @@ The template for the the fast start.
 
 ## What's inside
 * [gulp](https://gulpjs.com/);
-* [jade](https://pugjs.org/api/getting-started.html);
+* ~~jade~~ [pug](https://pugjs.org/api/getting-started.html);
 * [stylus](http://stylus-lang.com/);
 * [postcss](http://postcss.org/);
 * [babel](http://babeljs.io/);

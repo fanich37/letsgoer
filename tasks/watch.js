@@ -8,9 +8,12 @@ const bs = bSync.create();
 gulp.task('watch', () => {
 	global.watch = true;
 
-	watch('app/resources/**/*', () => runSequence('copy', bs.reload));
-	watch('app/{styles,blocks}/**/*.styl', () => { runSequence(['styles', 'styles:lint'], () => bs.reload('assets/styles/app.min.css')) });
-	watch('app/icons/**/*.svg', () => runSequence('icons', bs.reload));
-	watch('app/{pages,blocks}/**/*.jade', () => runSequence('templates', bs.reload));
-	watch('app/scripts/external-libs/*.js', () => runSequence('scripts:libs', bs.reload));
+	watch('src/resources/**/*', () => runSequence('copy', bs.reload));
+	watch('src/{styles,blocks}/**/*.styl', () => { runSequence(['styles', 'styles:lint'], () => bs.reload('assets/styles/main.min.css')) });
+	watch('src/icons/**/*.svg', () => runSequence('icons', bs.reload));
+	watch('src/{pages,blocks}/**/*.pug', () => runSequence('templates', bs.reload))
+		.on('all', (event, filepath) => {
+			global.emittyChangedFile = filepath;
+		});
+	watch('src/scripts/external-libs/*.js', () => runSequence('scripts:libs', bs.reload));
 });

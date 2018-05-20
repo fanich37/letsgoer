@@ -8,7 +8,7 @@ const { PORT, OPEN, NODE_ENV, TUNNEL } = process.env;
 gulp.task('server', () => (
 	bs.init({
 		watchOptions: {
-			ignored: 'app/**/*'
+			ignored: 'src/**/*'
 		},
 		files: ['dist/**/*'],
 		open: !!OPEN,
@@ -21,7 +21,7 @@ gulp.task('server', () => (
 		},
 		server: {
 			baseDir: [
-				'app',
+				'src',
 				'dist'
 			],
 			directory: false,

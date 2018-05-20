@@ -17,26 +17,25 @@
     "babel-env": "^2.4.1",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
-    "bemto.jade": "^1.0.3",
+    "bemto.pug": "^2.1.0",
     "browser-sync": "^2.18.13",
     "cross-env": "^5.1.0",
     "debuga": "^1.0.2",
+    "emitty": "^1.4.0",
     "eslint": "^4.16.0",
     "eslint-loader": "^1.9.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
-    "gulp-cached": "^1.1.1",
-    "gulp-changed": "^3.1.0",
+    "gulp-changed": "^3.2.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-filter": "^5.0.1",
     "gulp-group-css-media-queries": "^1.2.0",
     "gulp-if": "^2.0.2",
-    "gulp-jade": "^1.1.0",
-    "gulp-jade-inheritance": "^0.5.5",
     "gulp-jsbeautifier": "^2.1.2",
     "gulp-plumber": "^1.1.0",
     "gulp-plumber-error-handler": "^1.0.0",
     "gulp-postcss": "^7.0.0",
+    "gulp-pug": "^4.0.1",
     "gulp-pug-linter": "^0.5.1",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.6.1",
@@ -57,6 +56,7 @@
     "stylus": "^0.54.5",
     "stylus-import-if-exist": "^1.1.0",
     "svg4everybody": "^2.1.9",
+    "uninstall": "0.0.0",
     "webpack": "^3.10.0",
     "webpack-stream": "^4.0.0"
   },
@@ -70,7 +70,7 @@
     "safari": 7
   },
   "scriptBundles": {
-    "app": "./app/scripts/app.js"
+    "bundle": "./src/scripts/bundle.js"
   },
   "externalLibs": {
     "jquery": "$"

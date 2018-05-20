@@ -18,7 +18,7 @@ import { browsers } from '../package.json';
 const isDebug = process.env.NODE_ENV !== 'production';
 
 gulp.task('styles', () => (
-	gulp.src('app/styles/*.styl')
+	gulp.src('src/styles/*.styl')
 		.pipe(plumber({errorHandler: errorHandler(`Error in \'styles\' task`)}))
 		.pipe(gulpIf(isDebug, sourcemaps.init()))
 		.pipe(stylus({
@@ -47,7 +47,7 @@ gulp.task('styles', () => (
 ));
 
 gulp.task('styles:lint', () => (
-	gulp.src(['app/**/*.styl', '!app/styles/**'])
+	gulp.src(['src/**/*.styl', '!src/styles/**'])
 		.pipe(stylint({
 			reporter: 'stylint-stylish',
 			reporterOptions: {verbose: true}
