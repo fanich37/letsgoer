@@ -16,4 +16,3 @@ gulp.task('watch', () => {
 			global.emittyChangedFile = filepath;
 		});
 	watch('src/scripts/vendor/*.js', () => runSequence('scripts:vendor', bs.reload));
-});
