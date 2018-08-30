@@ -31,7 +31,7 @@ rules:
     guard-for-in: 1
     handle-callback-err: 0
     id-length: [2, {min: 1, max: 30}]
-    indent: [2, 'tab', {SwitchCase: 1}]
+    indent: ['error', 2]
     key-spacing: [2, {beforeColon: false, afterColon: true}]
     lines-around-comment: 0
     linebreak-style: [0, 'unix']
@@ -159,7 +159,7 @@ rules:
             throw: {after: true},
             case: {after: true}
         }}]
-    space-before-function-paren: [2, {anonymous: 'always', named: 'never'}]
+    space-before-function-paren: [2, {anonymous: 'never', named: 'never'}]
     space-in-parens: 0
     space-infix-ops: 2
     space-unary-ops: [2, {words: true, nonwords: false}]

@@ -1,17 +1,17 @@
 mixin icon(iconName, isBlock)
-	if isBlock
-		svg&attributes(attributes)
-			use(xlink:href=`/assets/images/icon.svg#icon_${iconName}`)
-	else
-		+e('svg')&attributes(attributes)
-			use(xlink:href=`/assets/images/icon.svg#icon_${iconName}`)
+  if isBlock
+    svg&attributes(attributes)
+      use(xlink:href=`/assets/images/icon.svg#icon_${iconName}`)
+  else
+    +e('svg')&attributes(attributes)
+      use(xlink:href=`/assets/images/icon.svg#icon_${iconName}`)
 
 mixin list(items, isOl)
-	if isOl
-		+e('ol').list&attributes(attributes)
-			each item in items
-				+e('li').list-item= item
-	else
-		+e('ul').list&attributes(attributes)
-			each item in items
-				+e('li').list-item= item
+  if isOl
+    +e('ol').list&attributes(attributes)
+      each item in items
+        +e('li').list-item= item
+  else
+    +e('ul').list&attributes(attributes)
+      each item in items
+        +e('li').list-item= item

@@ -62,12 +62,12 @@
   },
   "browsers": {
     "android": 4,
-    "chrome": 42,
-    "firefox": 37,
-    "ie": 10,
-    "ios": 7,
-    "opera": 28,
-    "safari": 7
+    "chrome": 60,
+    "firefox": 53,
+    "ie": 11,
+    "ios": 9,
+    "opera": 47,
+    "safari": 9
   },
   "scriptBundles": {
     "bundle": "./src/scripts/bundle.js"

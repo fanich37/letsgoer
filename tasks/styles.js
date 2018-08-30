@@ -13,45 +13,49 @@ import rename from 'gulp-rename';
 import sourcemaps from 'gulp-sourcemaps';
 import errorHandler from 'gulp-plumber-error-handler';
 
-import { browsers } from '../package.json';
+import {browsers}from '../package.json';
 
 const isDebug = process.env.NODE_ENV !== 'production';
 
-gulp.task('styles', () => (
-	gulp.src('src/styles/*.styl')
-		.pipe(plumber({errorHandler: errorHandler(`Error in \'styles\' task`)}))
-		.pipe(gulpIf(isDebug, sourcemaps.init()))
-		.pipe(stylus({
-			use: [
-				importIfExist()
-			],
-			'include css': true
-		}))
-		.pipe(autoprefixer(
-			'Android >= ' + browsers.android,
-			'Chrome >= ' + browsers.chrome,
-			'Firefox >= ' + browsers.firefox,
-			'Explorer >= ' + browsers.ie,
-			'iOS >= ' + browsers.ios,
-			'Opera >= ' + browsers.opera,
-			'Safari >= ' + browsers.safari
-		))
-		.pipe(postcss([
-			flexfixes()
-		]))
-		.pipe(gulpIf(!isDebug, gcmq()))
-		.pipe(gulpIf(!isDebug, nano({zindex: false, autoprefixer: false})))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulpIf(isDebug, sourcemaps.write()))
-		.pipe(gulp.dest('dist/assets/styles'))
-));
+gulp.task('styles', () =>
+  gulp
+    .src('src/styles/*.styl')
+    .pipe(plumber({errorHandler: errorHandler('Error in \'styles\' task')}))
+    .pipe(gulpIf(isDebug, sourcemaps.init()))
+    .pipe(
+      stylus({
+        use: [importIfExist()],
+        'include css': true
+      })
+    )
+    .pipe(
+      autoprefixer(
+        'Android >= ' + browsers.android,
+        'Chrome >= ' + browsers.chrome,
+        'Firefox >= ' + browsers.firefox,
+        'Explorer >= ' + browsers.ie,
+        'iOS >= ' + browsers.ios,
+        'Opera >= ' + browsers.opera,
+        'Safari >= ' + browsers.safari
+      )
+    )
+    .pipe(postcss([flexfixes()]))
+    .pipe(gulpIf(!isDebug, gcmq()))
+    .pipe(gulpIf(!isDebug, nano({zindex: false, autoprefixer: false})))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulpIf(isDebug, sourcemaps.write()))
+    .pipe(gulp.dest('dist/assets/styles'))
+);
 
-gulp.task('styles:lint', () => (
-	gulp.src(['src/**/*.styl', '!src/styles/**'])
-		.pipe(stylint({
-			reporter: 'stylint-stylish',
-			reporterOptions: {verbose: true}
-		}))
-		.pipe(stylint.reporter())
-		.pipe(stylint.reporter('fail', {failOnWarning: true}))
-));
+gulp.task('styles:lint', () =>
+  gulp
+    .src(['src/**/*.styl', '!src/styles/**'])
+    .pipe(
+      stylint({
+        reporter: 'stylint-stylish',
+        reporterOptions: {verbose: true}
+      })
+    )
+    .pipe(stylint.reporter())
+    .pipe(stylint.reporter('fail', {failOnWarning: true}))
+);
