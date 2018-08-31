@@ -31,7 +31,7 @@ function createBlockFolder(blockName) {
 function createBlockFiles(blockName) {
   const blockContent = {
     pug: `include ../mixins/mixins\n\nmixin ${blockName}()\n  +b.${blockName}&attributes(attributes)\n    block\n`,
-    styl: `.${blockName}\n\tdisplay block`,
+    styl: `.${blockName}\n  display block`,
     js: ''
   };
   return new Promise(resolve => {
