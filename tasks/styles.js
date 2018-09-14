@@ -43,7 +43,7 @@ gulp.task('styles', () =>
     .pipe(gulpIf(!isDebug, gcmq()))
     .pipe(gulpIf(!isDebug, nano({zindex: false, autoprefixer: false})))
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulpIf(isDebug, sourcemaps.write()))
+    .pipe(gulpIf(isDebug, sourcemaps.write('map')))
     .pipe(gulp.dest('dist/assets/styles'))
 );
 
